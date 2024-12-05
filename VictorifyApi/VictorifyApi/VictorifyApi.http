@@ -1,0 +1,6 @@
+@VictorifyApi_HostAddress = http://localhost:5092
+
+GET {{VictorifyApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
