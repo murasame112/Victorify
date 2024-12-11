@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  victorifyapi:
+    image: ${DOCKER_REGISTRY-}victorifyapi
+    build:
+      context: .
+      dockerfile: VictorifyApi/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+  victorifydb:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      - "POSTGRES_DB=VictorifyDB"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=admin"
+    volumes:
+      - ./.contrainers/postgres-container:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

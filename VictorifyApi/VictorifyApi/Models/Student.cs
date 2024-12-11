@@ -10,7 +10,7 @@ namespace VictorifyApi.Models
         public string Email { get; set; }
         //public Game Game { get; set; } // enum
         //public int Rank { get; set; } // enum?
-        public List<int> TeacherIds { get; set; }
-        public List<int> LessonIds { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
     }
 }

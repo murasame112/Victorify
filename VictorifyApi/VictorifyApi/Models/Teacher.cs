@@ -10,7 +10,7 @@
         //public Game Games { get; set; } // enum
         //public int Rank { get; set; } // enum?
         public decimal HourlyRate { get; set; }
-        public List<int> StudentIds { get; set; }
-        public List<int> LessonIds { get; set; }
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
     }
 }
