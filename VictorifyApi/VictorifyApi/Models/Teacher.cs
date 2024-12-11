@@ -13,4 +13,13 @@
         public ICollection<Student> Students { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
     }
+
+    public class UpdateTeacherDto
+    {
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? Nickname { get; set; }
+        public string? Email { get; set; }
+        public decimal? HourlyRate { get; set; }
+    }
 }

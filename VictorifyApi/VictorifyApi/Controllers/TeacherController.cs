@@ -17,13 +17,6 @@ namespace VictorifyApi.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public IActionResult GetAllTeachers()
-        //{
-        //    var teachers = new List<string> { "John Doe", "Jane Smith" };
-        //    return Ok(teachers);
-        //}
-
         [HttpPost]
         public async Task<ActionResult<List<Teacher>>> AddTeacher(Teacher teacher)
         {
@@ -50,5 +43,73 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTeacher(int id)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+            {
+                return NotFound("Teacher not found.");
+            }
+
+            _context.Teachers.Remove(teacher);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> UpdateTeacher(int id, [FromBody] UpdateTeacherDto updatedTeacher)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+            {
+                return NotFound("Teacher not found.");
+            }
+
+            if (updatedTeacher.Name != null) teacher.Name = updatedTeacher.Name;
+            if (updatedTeacher.Surname != null) teacher.Surname = updatedTeacher.Surname;
+            if (updatedTeacher.Nickname != null) teacher.Nickname = updatedTeacher.Nickname;
+            if (updatedTeacher.Email != null) teacher.Email = updatedTeacher.Email;
+            if (updatedTeacher.HourlyRate.HasValue) teacher.HourlyRate = updatedTeacher.HourlyRate.Value;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(teacher);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> ReplaceTeacher(int id, [FromBody] Teacher newTeacher)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+            {
+                return NotFound("Teacher not found.");
+            }
+
+            teacher.Name = newTeacher.Name;
+            teacher.Surname = newTeacher.Surname;
+            teacher.Nickname = newTeacher.Nickname;
+            teacher.Email = newTeacher.Email;
+            teacher.HourlyRate = newTeacher.HourlyRate;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(teacher);
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<List<Teacher>>> SearchTeachers([FromQuery] string email)
+        {
+            var query = _context.Teachers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                query = query.Where(t => t.Email.Contains(email));
+            }
+
+            return Ok(await query.ToListAsync());
+        }
     }
 }
