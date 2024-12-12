@@ -16,6 +16,7 @@ namespace VictorifyApi.Controllers
             _context = context;
         }
 
+        // AddStudent: Dodaje nowego studenta.
         [HttpPost]
         public async Task<ActionResult<List<Student>>> AddStudent(Student student)
         {
@@ -25,12 +26,14 @@ namespace VictorifyApi.Controllers
             return Ok(await _context.Students.ToListAsync());
         }
 
+        // GetAllStudents: Zwraca listę wszystkich studentów.
         [HttpGet]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
         {
             return Ok(await _context.Students.ToListAsync());
         }
 
+        // GetStudent: Zwraca pojedynczego studenta na podstawie ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {
@@ -42,6 +45,7 @@ namespace VictorifyApi.Controllers
             return Ok(student);
         }
 
+        // DeleteStudent: Usuwa studenta na podstawie ID.
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteStudent(int id)
         {
@@ -57,6 +61,7 @@ namespace VictorifyApi.Controllers
             return NoContent();
         }
 
+        // UpdateStudent: Aktualizuje dane studenta.
         [HttpPatch("{id}")]
         public async Task<ActionResult> UpdateStudent(int id, [FromBody] UpdateStudentDto updatedStudent)
         {
@@ -76,6 +81,7 @@ namespace VictorifyApi.Controllers
             return Ok(student);
         }
 
+        // ReplaceStudent: Zastępuje dane studenta nowymi.
         [HttpPut("{id}")]
         public async Task<ActionResult> ReplaceStudent(int id, [FromBody] Student newStudent)
         {
@@ -95,6 +101,7 @@ namespace VictorifyApi.Controllers
             return Ok(student);
         }
 
+        // SearchStudents: Przeszukuje studentów na podstawie emaila.
         [HttpGet("search")]
         public async Task<ActionResult<List<Student>>> SearchStudents([FromQuery] string email)
         {
@@ -108,5 +115,4 @@ namespace VictorifyApi.Controllers
             return Ok(await query.ToListAsync());
         }
     }
-
 }

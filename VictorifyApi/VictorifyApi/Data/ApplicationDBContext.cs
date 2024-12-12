@@ -18,20 +18,33 @@ namespace VictorifyApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Teacher>()
-                .HasMany(s => s.Students)
-                .WithMany(t => t.Teachers)
-                .UsingEntity(ts => ts.ToTable("TeacherStudent"));
+            //modelBuilder.Entity<Teacher>()
+            //    .HasMany(s => s.Students)
+            //    .WithMany(t => t.Teachers)
+            //    .UsingEntity(ts => ts.ToTable("TeacherStudent"));
 
-            modelBuilder.Entity<Teacher>()
-                .HasMany(l => l.Lessons)
-                .WithMany(t => t.Teachers)
-                .UsingEntity(lt => lt.ToTable("LessonTeacher"));
+            //modelBuilder.Entity<Teacher>()
+            //    .HasMany(l => l.Lessons)
+            //    .WithMany(t => t.Teachers)
+            //    .UsingEntity(lt => lt.ToTable("LessonTeacher"));
 
-            modelBuilder.Entity<Student>()
-                .HasMany(l => l.Lessons)
-                .WithMany(s => s.Students)
-                .UsingEntity(ls => ls.ToTable("LessonStudent"));
+            //modelBuilder.Entity<Student>()
+            //    .HasMany(l => l.Lessons)
+            //    .WithMany(s => s.Students)
+            //    .UsingEntity(ls => ls.ToTable("LessonStudent"));
+
+            modelBuilder.Entity<Lesson>()
+                .HasOne(l => l.Teacher)
+                .WithMany(t => t.Lessons)
+                .HasForeignKey(l => l.TeacherId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Lesson>()
+                .HasOne(l => l.Student)
+                .WithMany(s => s.Lessons)
+                .HasForeignKey(l => l.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

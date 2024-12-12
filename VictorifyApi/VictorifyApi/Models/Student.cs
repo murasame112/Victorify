@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace VictorifyApi.Models
+﻿namespace VictorifyApi.Models
 {
     public class Student
     {
@@ -10,7 +9,6 @@ namespace VictorifyApi.Models
         public string Email { get; set; }
         //public Game Game { get; set; } // enum
         //public int Rank { get; set; } // enum?
-        public ICollection<Teacher> Teachers { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
     }
 

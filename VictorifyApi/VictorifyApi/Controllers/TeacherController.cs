@@ -9,7 +9,6 @@ namespace VictorifyApi.Controllers
     [Route("api/[controller]")]
     public class TeachersController : ControllerBase
     {
-
         private readonly ApplicationDBContext _context;
 
         public TeachersController(ApplicationDBContext context)
@@ -17,6 +16,7 @@ namespace VictorifyApi.Controllers
             _context = context;
         }
 
+        // AddTeacher: Dodaje nowego nauczyciela.
         [HttpPost]
         public async Task<ActionResult<List<Teacher>>> AddTeacher(Teacher teacher)
         {
@@ -26,12 +26,14 @@ namespace VictorifyApi.Controllers
             return Ok(await _context.Teachers.ToListAsync());
         }
 
+        // GetAllTeachers: Zwraca listę wszystkich nauczycieli.
         [HttpGet]
         public async Task<ActionResult<List<Teacher>>> GetAllTeachers()
         {
             return Ok(await _context.Teachers.ToListAsync());
         }
 
+        // GetTeacher: Zwraca pojedynczego nauczyciela na podstawie ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
@@ -43,7 +45,7 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
-
+        // DeleteTeacher: Usuwa nauczyciela na podstawie ID.
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTeacher(int id)
         {
@@ -59,6 +61,7 @@ namespace VictorifyApi.Controllers
             return NoContent();
         }
 
+        // UpdateTeacher: Aktualizuje dane nauczyciela.
         [HttpPatch("{id}")]
         public async Task<ActionResult> UpdateTeacher(int id, [FromBody] UpdateTeacherDto updatedTeacher)
         {
@@ -79,6 +82,7 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
+        // ReplaceTeacher: Zastępuje dane nauczyciela nowymi.
         [HttpPut("{id}")]
         public async Task<ActionResult> ReplaceTeacher(int id, [FromBody] Teacher newTeacher)
         {
@@ -99,6 +103,7 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
+        // SearchTeachers: Przeszukuje nauczycieli na podstawie emaila.
         [HttpGet("search")]
         public async Task<ActionResult<List<Teacher>>> SearchTeachers([FromQuery] string email)
         {
