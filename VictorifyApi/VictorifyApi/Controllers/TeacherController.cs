@@ -16,24 +16,32 @@ namespace VictorifyApi.Controllers
             _context = context;
         }
 
-        // AddTeacher: Dodaje nowego nauczyciela.
+
         [HttpPost]
-        public async Task<ActionResult<List<Teacher>>> AddTeacher(Teacher teacher)
+        public async Task<ActionResult<List<Teacher>>> AddTeacher([FromBody] CreateTeacherDto createTeacherDto)
         {
+            var teacher = new Teacher
+            {
+                Name = createTeacherDto.Name,
+                Surname = createTeacherDto.Surname,
+                Nickname = createTeacherDto.Nickname,
+                Email = createTeacherDto.Email,
+                HourlyRate = createTeacherDto.HourlyRate
+            };
+
             _context.Teachers.Add(teacher);
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Teachers.ToListAsync());
         }
 
-        // GetAllTeachers: Zwraca listę wszystkich nauczycieli.
+
         [HttpGet]
         public async Task<ActionResult<List<Teacher>>> GetAllTeachers()
         {
             return Ok(await _context.Teachers.ToListAsync());
         }
 
-        // GetTeacher: Zwraca pojedynczego nauczyciela na podstawie ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
@@ -45,7 +53,6 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
-        // DeleteTeacher: Usuwa nauczyciela na podstawie ID.
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTeacher(int id)
         {
@@ -61,7 +68,6 @@ namespace VictorifyApi.Controllers
             return NoContent();
         }
 
-        // UpdateTeacher: Aktualizuje dane nauczyciela.
         [HttpPatch("{id}")]
         public async Task<ActionResult> UpdateTeacher(int id, [FromBody] UpdateTeacherDto updatedTeacher)
         {
@@ -82,28 +88,6 @@ namespace VictorifyApi.Controllers
             return Ok(teacher);
         }
 
-        // ReplaceTeacher: Zastępuje dane nauczyciela nowymi.
-        [HttpPut("{id}")]
-        public async Task<ActionResult> ReplaceTeacher(int id, [FromBody] Teacher newTeacher)
-        {
-            var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null)
-            {
-                return NotFound("Teacher not found.");
-            }
-
-            teacher.Name = newTeacher.Name;
-            teacher.Surname = newTeacher.Surname;
-            teacher.Nickname = newTeacher.Nickname;
-            teacher.Email = newTeacher.Email;
-            teacher.HourlyRate = newTeacher.HourlyRate;
-
-            await _context.SaveChangesAsync();
-
-            return Ok(teacher);
-        }
-
-        // SearchTeachers: Przeszukuje nauczycieli na podstawie emaila.
         [HttpGet("search")]
         public async Task<ActionResult<List<Teacher>>> SearchTeachers([FromQuery] string email)
         {

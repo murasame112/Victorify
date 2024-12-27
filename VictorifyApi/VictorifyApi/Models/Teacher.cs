@@ -21,4 +21,13 @@
         public string? Email { get; set; }
         public decimal? HourlyRate { get; set; }
     }
+
+    public class CreateTeacherDto
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Nickname { get; set; }
+        public string Email { get; set; }
+        public decimal HourlyRate { get; set; }
+    }
 }

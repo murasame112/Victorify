@@ -17,17 +17,24 @@ namespace VictorifyApi.Controllers
             _context = context;
         }
 
-        // AddLesson: Dodaje nową lekcję, przypisując nauczyciela i ucznia.
         [HttpPost]
-        public async Task<ActionResult<List<Lesson>>> AddLesson(Lesson lesson)
+        public async Task<ActionResult<List<Lesson>>> AddLesson([FromBody] CreateLessonDto createLessonDto)
         {
-            var teacher = await _context.Teachers.FindAsync(lesson.TeacherId);
-            var student = await _context.Students.FindAsync(lesson.StudentId);
+            var teacher = await _context.Teachers.FindAsync(createLessonDto.TeacherId);
+            var student = await _context.Students.FindAsync(createLessonDto.StudentId);
 
             if (teacher == null || student == null)
             {
                 return BadRequest("Teacher or Student not found.");
             }
+
+            var lesson = new Lesson
+            {
+                Date = createLessonDto.Date,
+                Current = createLessonDto.Current,
+                TeacherId = createLessonDto.TeacherId,
+                StudentId = createLessonDto.StudentId
+            };
 
             _context.Lessons.Add(lesson);
             await _context.SaveChangesAsync();
@@ -35,23 +42,22 @@ namespace VictorifyApi.Controllers
             return Ok(await _context.Lessons.ToListAsync());
         }
 
-        // GetAllLessons: Zwraca listę wszystkich lekcji.
         [HttpGet]
         public async Task<ActionResult<List<Lesson>>> GetAllLessons()
         {
             return Ok(await _context.Lessons
-                .Include(l => l.Teacher) // Include tylko nauczyciela
-                .Include(l => l.Student) // Include tylko ucznia
+                .Include(l => l.Teacher)
+                .Include(l => l.Student)
                 .ToListAsync());
         }
 
-        // GetLesson: Zwraca pojedynczą lekcję na podstawie ID.
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Lesson>> GetLesson(int id)
         {
             var lesson = await _context.Lessons
-                .Include(l => l.Teacher) // Include tylko nauczyciela
-                .Include(l => l.Student) // Include tylko ucznia
+                .Include(l => l.Teacher)
+                .Include(l => l.Student)
                 .FirstOrDefaultAsync(l => l.Id == id);
 
             if (lesson == null)
@@ -62,7 +68,7 @@ namespace VictorifyApi.Controllers
             return Ok(lesson);
         }
 
-        // DeleteLesson: Usuwa lekcję na podstawie ID.
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteLesson(int id)
         {
@@ -78,7 +84,7 @@ namespace VictorifyApi.Controllers
             return NoContent();
         }
 
-        // UpdateLesson: Aktualizuje dane lekcji.
+
         [HttpPatch("{id}")]
         public async Task<ActionResult> UpdateLesson(int id, [FromBody] UpdateLessonDto updatedLesson)
         {
@@ -100,27 +106,6 @@ namespace VictorifyApi.Controllers
             return Ok(lesson);
         }
 
-        // ReplaceLesson: Zastępuje dane lekcji nowymi.
-        [HttpPut("{id}")]
-        public async Task<ActionResult> ReplaceLesson(int id, [FromBody] Lesson newLesson)
-        {
-            var lesson = await _context.Lessons.FindAsync(id);
-            if (lesson == null)
-            {
-                return NotFound("Lesson not found.");
-            }
-
-            lesson.Date = newLesson.Date;
-            lesson.Current = newLesson.Current;
-            lesson.TeacherId = newLesson.TeacherId; // Tylko ID nauczyciela
-            lesson.StudentId = newLesson.StudentId; // Tylko ID ucznia
-
-            await _context.SaveChangesAsync();
-
-            return Ok(lesson);
-        }
-
-        // SearchLessons: Przeszukuje lekcje na podstawie ID ucznia lub nauczyciela.
         [HttpGet("search")]
         public async Task<ActionResult<List<Lesson>>> SearchLessons([FromQuery] int? studentId, [FromQuery] int? teacherId)
         {
@@ -128,17 +113,17 @@ namespace VictorifyApi.Controllers
 
             if (studentId.HasValue)
             {
-                query = query.Where(l => l.StudentId == studentId.Value); // Wyszukiwanie po ID ucznia
+                query = query.Where(l => l.StudentId == studentId.Value);
             }
 
             if (teacherId.HasValue)
             {
-                query = query.Where(l => l.TeacherId == teacherId.Value); // Wyszukiwanie po ID nauczyciela
+                query = query.Where(l => l.TeacherId == teacherId.Value); 
             }
 
             return Ok(await query
-                .Include(l => l.Teacher) // Include tylko nauczyciela
-                .Include(l => l.Student) // Include tylko ucznia
+                .Include(l => l.Teacher)
+                .Include(l => l.Student)
                 .ToListAsync());
         }
     }
