@@ -48,3 +48,12 @@ body > div {
 	width: 100%;
 	min-height: 100vh;
 }
+
+.content {
+	display: flex;
+	flex-direction: column;
+	height: 70vh;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
