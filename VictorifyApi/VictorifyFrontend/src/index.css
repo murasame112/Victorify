@@ -13,29 +13,26 @@
   -moz-osx-font-smoothing: grayscale; */
 
 	/*Colors: */
-	--ecru: #D4C685;
-	--maize: #F7EF81;
-	--mindaro: #CFE795;
-	--celadon: #A7D3A6;
-	--ash: #ADD2C2;
+	--background: #111827;
+	--background_inactive: #374151;
+	--background_dark: #0A0A0A;
+	--green_dark: #1F2937;
+	--green_back: #1F3742;
+	--text: #1FA27C;
+	--text_secondary: #F5DEB3;
 
-	/* low saturation: */
-	--ecru_low: #C9BF92;
-	--maize_low: #E6E094;
-	--mindaro_low: #CADBA3;
-	--celadon_low: #ADCCAD;
-	--ash_low: #B2CCC1;
+	--gradient: #091716;
+	--gradient_later_active: #4ACCC1;
+	--gradient_later_inactive: #182727;
 
-	/* high saturation: */
-	--ecru_high: #E1CE7A;
-	--maize_high: #F9F180;
-	--mindaro_high: #D2EE90;
-	--celadon_high: #9AE099;
-	--ash_high: #9FDFC4;
+	--error: #A12920;
+	--success: #32C24A;
+
 }
 
 
 body {
+	background-color: var(--background_dark);
 	padding: 0;
 	margin: 0;
 	height: 100%;
@@ -52,8 +49,8 @@ body > div {
 .content {
 	display: flex;
 	flex-direction: column;
-	height: 70vh;
+	height: 100vh;
 	width: 100%;
-	margin: 0;
-	padding: 0;
+	justify-content: center;
+	align-items: center;
 }

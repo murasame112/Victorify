@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import LandingPage from './components/LandingPage/LandingPage';
 import {
 	BrowserRouter as Router,
@@ -24,9 +22,8 @@ function App() {
 											path='*'
 											element={<Navigate to='/' replace />}
 									></Route>
-							</Routes> 
+							</Routes>
 						</div>
-						<Footer/>
 					</Router>
     </>
   )
