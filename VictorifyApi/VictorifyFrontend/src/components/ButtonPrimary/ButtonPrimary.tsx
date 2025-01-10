@@ -4,10 +4,11 @@ import stylesDefault from '../../index.css';
 import styles from './ButtonPrimary.module.css';
 
 
-function ButtonPrimary() {
+function ButtonPrimary(props: any) {
 
 return(
-	<button className={styles.buttonPrimary}>Button content</button>
+
+	<button className={styles.buttonPrimary}>{props.content}</button>
 );
 }
 

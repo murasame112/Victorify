@@ -1,3 +1,16 @@
 .buttonPrimary{
-		
+		height:50px;
+		width:270px;
+		font-size:22px;
+		background: var(--gradient);
+		background: linear-gradient(90deg, var(--gradient) 56%, var(--gradient_later_inactive) 88%);
+		border: 1px solid var(--green_dark);
+		color: var(--text);
+}
+
+
+.buttonPrimary:hover{
+	background: var(--gradient);
+	background: linear-gradient(90deg,  var(--gradient) 56%, var(--gradient_later_active) 88%);
+	cursor: pointer;
 }

@@ -3,8 +3,9 @@
 	height:80vh;
 	/* border:2px solid var(--cambridge_high); */
 	border-radius: 20px;
-	background: var(--gradient);
-	background: linear-gradient(0deg, var(--gradient) 16%, var(--gradient_later_inactive) 88%); 
+	/* background: var(--gradient);
+	background: linear-gradient(0deg, var(--gradient) 16%, var(--gradient_later_inactive) 88%);  */
+	background-color: var(--background);
 	padding:5px;
 	display:flex;
 	flex-direction: column;
@@ -17,7 +18,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	width:100%;
+	width:70%;
 }
 
 h1, p{
@@ -25,5 +26,10 @@ h1, p{
 }
 
 h1{
+	font-size: 66px;
 	color: var(--text);
+}
+
+p{
+	font-size: 18px;
 }
