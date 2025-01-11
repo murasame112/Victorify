@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import LandingPage from './components/LandingPage/LandingPage';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -9,6 +8,10 @@ import {
 	useLocation
 } from 'react-router';
 
+// ===== components =====
+import LandingPage from './components/LandingPage/LandingPage';
+import CreateStudent from './components/CreateStudent/CreateStudent';
+import CreateTeacher from './components/CreateTeacher/CreateTeacher';
 
 function App() {
 
@@ -16,13 +19,18 @@ function App() {
     <>
 					<Router>
 						<div className='content'>
-							 <Routes>
-							 <Route path='/' element={<LandingPage/>}></Route>
+							<div className='box'>
+							 	<Routes>
+							 	<Route path='/' element={<LandingPage/>}></Route>
 									<Route
 											path='*'
 											element={<Navigate to='/' replace />}
 									></Route>
-							</Routes>
+									<Route path='/student' element={<CreateStudent/>}></Route>
+									<Route path='/teacher' element={<CreateTeacher/>}></Route>
+
+								</Routes>
+							</div>
 						</div>
 					</Router>
     </>

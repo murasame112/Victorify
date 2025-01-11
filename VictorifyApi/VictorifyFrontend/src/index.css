@@ -1,17 +1,4 @@
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-
 	/*Colors: */
 	--background: #111827;
 	--background_inactive: #374151;
@@ -53,4 +40,37 @@ body > div {
 	width: 100%;
 	justify-content: center;
 	align-items: center;
+}
+
+.box{
+	width:80vw;
+	height:80vh;
+	border-radius: 20px;
+	background-color: var(--background);
+	padding:5px;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.box > div{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width:70%;
+}
+
+p{
+	color:var(--text_secondary);
+	font-size: 18px;
+}
+
+h1, p{
+	font-family: 'Courier New', monospace;
+}
+
+h1{
+	font-size: 66px;
+	color: var(--text);
 }

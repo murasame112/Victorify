@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import {
+	Link
+} from 'react-router';
 
 // ===== styles =====
 import stylesDefault from '../../index.css';
-import styles from './LandingPage.module.css';
+import './LandingPage.module.css';
 
 // ===== components =====
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary';
@@ -12,7 +14,6 @@ function LandingPage() {
 
     return (
         <>
-					<div className={styles.landing}> 
 						<div><h1>Victorify</h1></div>
 						<div>
 							<p>Level up your skills in your favorite games or share your expertise and earn money! Our platform connects gamers looking to improve their
@@ -20,11 +21,10 @@ function LandingPage() {
 							  or teach others - you'll find the perfect fit here.</p>
 						</div>
 						<div>
-							<ButtonPrimary content="Join as a student"/>
-							<ButtonPrimary content="Join as a teacher"/>
+						<Link to='/student'><ButtonPrimary content="Join as a student"/></Link>
+						<Link to='/teacher'><ButtonPrimary content="Join as a teacher"/></Link>
 						</div>
 
-					</div>
         </>
     );
 }
