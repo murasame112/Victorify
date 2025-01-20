@@ -12,6 +12,7 @@ import {
 import LandingPage from './components/LandingPage/LandingPage';
 import CreateStudent from './components/CreateStudent/CreateStudent';
 import CreateTeacher from './components/CreateTeacher/CreateTeacher';
+import CreateLesson from './components/CreateLesson/CreateLesson';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
 									></Route>
 									<Route path='/student' element={<CreateStudent sendFormData={handleStudentFormData}/>}></Route>
 									<Route path='/teacher' element={<CreateTeacher sendFormData={handleTeacherFormData}/>}></Route>
+									<Route path='/lesson' element={<CreateLesson /*sendFormData={handleTeacherFormData}*//>}></Route>
 
 								</Routes>
 							</div>

@@ -21,8 +21,9 @@ function LandingPage() {
 							  or teach others - you'll find the perfect fit here.</p>
 						</div>
 						<div>
-						<Link to='/student'><ButtonPrimary content="Join as a student"/></Link>
-						<Link to='/teacher'><ButtonPrimary content="Join as a teacher"/></Link>
+							<Link to='/student'><ButtonPrimary content="Join as a student"/></Link>
+							<Link to='/teacher'><ButtonPrimary content="Join as a teacher"/></Link>
+							<Link to='/lesson'><ButtonPrimary content="Schedule a lesson"/></Link>
 						</div>
 
         </>
