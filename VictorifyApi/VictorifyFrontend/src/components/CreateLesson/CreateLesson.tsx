@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-	Link
+	Link,
+	useParams
 } from 'react-router';
 
 // ===== styles =====
@@ -25,13 +26,44 @@ function CreateLesson() {
 - datepicker (od dzisiejszej w przód)
 - current domyslnie na false
 
+                    <Route
+                        path='/strategy/:id'
+                        element={<StratSingle />}
+                    ></Route>
 	*/
 
+	const [data, setData] = useState<any>([]);
+	//const { id } = useParams();
+
+	// useEffect(() => {
+	// 		fetch('http://localhost:4200/strategy/' + id)
+	// 				.then((response) => response.json())
+	// 				.then((data) => {
+	// 						setData(data);
+	// 				})
+	// 				.catch((error) => console.log(error));
+	// }, []);
+
+	useEffect(() => {
+		fetch('http://localhost:8081/api/Teachers')
+				.then((response) => response.json())
+				.then((data) => {
+						setData(data);
+				})
+				.catch((error) => console.log(error));
+	}, []);
+
+
+	if(data){
     return (
-        <>
-						<Link to='/'><button className={styles.button}>SEND</button></Link>
-        </>
-    );
+			<>
+					<Link to='/'><button className={styles.button}>SEND</button></Link>
+			</>
+		);
+	} else {
+		return <div>redirect!!!</div>; // TODO: redirect
+	}
+
 }
 
 export default CreateLesson;
