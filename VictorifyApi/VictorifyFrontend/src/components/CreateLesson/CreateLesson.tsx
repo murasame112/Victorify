@@ -307,9 +307,6 @@ function CreateLesson({ sendFormData }: any) {
                     />
                 </div>
             </div>
-            <button onClick={cl}>
-                sd
-            </button>
             <Link to='/'>
                 <button onClick={submitForm} className={styles.button} disabled={!buttonState}>
                     SEND
