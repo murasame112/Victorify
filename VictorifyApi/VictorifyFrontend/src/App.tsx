@@ -38,6 +38,16 @@ function App() {
 		);
 	};
 
+	const handleLessonFormData = (data: any) => {
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data),
+		};
+		fetch('https://localhost:8081/api/Lessons', requestOptions).then(
+			(response) => response.json()
+		);
+	};
 
 
   return (
@@ -53,7 +63,7 @@ function App() {
 									></Route>
 									<Route path='/student' element={<CreateStudent sendFormData={handleStudentFormData}/>}></Route>
 									<Route path='/teacher' element={<CreateTeacher sendFormData={handleTeacherFormData}/>}></Route>
-									<Route path='/lesson' element={<CreateLesson /*sendFormData={handleTeacherFormData}*//>}></Route>
+									<Route path='/lesson' element={<CreateLesson sendFormData={handleLessonFormData}/>}></Route>
 
 								</Routes>
 							</div>

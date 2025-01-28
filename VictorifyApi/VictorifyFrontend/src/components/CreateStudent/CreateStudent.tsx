@@ -11,7 +11,6 @@ function CreateStudent({ sendFormData }: any) {
 	const [surname, setSurname] = useState<string>('');
 	const [nickname, setNickname] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
-	const [hourlyRate, setHourlyRate] = useState<number>(0);
 
 	const updateName = (event: any) => {
 		setName(event.target.value);
@@ -39,7 +38,7 @@ function CreateStudent({ sendFormData }: any) {
 				email: email
 		};
 		sendFormData(data);
-};
+	};
 
     return (
         <>
