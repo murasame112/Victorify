@@ -1,4 +1,6 @@
-﻿namespace VictorifyApi.Models
+﻿using System.Text.Json.Serialization;
+
+namespace VictorifyApi.Models
 {
     public class Teacher
     {
@@ -10,6 +12,7 @@
         //public Game Games { get; set; } // enum
         //public int Rank { get; set; } // enum?
         public decimal HourlyRate { get; set; }
+        [JsonIgnore]
         public ICollection<Lesson> Lessons { get; set; }
     }
 

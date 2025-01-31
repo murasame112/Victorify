@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictorifyReports", "VictorifyReports\VictorifyReports.csproj", "{86E8DBC7-FF95-4283-BBC8-B0037A14BF99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86E8DBC7-FF95-4283-BBC8-B0037A14BF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E8DBC7-FF95-4283-BBC8-B0037A14BF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E8DBC7-FF95-4283-BBC8-B0037A14BF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E8DBC7-FF95-4283-BBC8-B0037A14BF99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D516CC39-1D12-4936-A5F9-3BF205EB7133}
+	EndGlobalSection
+EndGlobal

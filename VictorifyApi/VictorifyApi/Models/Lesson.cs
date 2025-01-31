@@ -1,4 +1,6 @@
-﻿namespace VictorifyApi.Models
+﻿using System.Text.Json.Serialization;
+
+namespace VictorifyApi.Models
 {
     public class Lesson
     {
@@ -8,9 +10,11 @@
         public bool Current { get; set; } // if lesson happend
 
         public int TeacherId { get; set; }
+        [JsonIgnore]
         public Teacher Teacher { get; set; }
 
-        public int StudentId { get; set; } 
+        public int StudentId { get; set; }
+        [JsonIgnore]
         public Student Student { get; set; }
     }
 
