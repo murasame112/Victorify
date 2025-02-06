@@ -12,17 +12,17 @@ class Program
         // Dodanie HttpClient do ServiceCollection
         services.AddHttpClient<LessonService>(client =>
         {
-            client.BaseAddress = new Uri("https://localhost:8081/");
+            client.BaseAddress = new Uri("http://victorifyapi:8080/");
         });
 
         services.AddHttpClient<TeacherService>(client =>
         {
-            client.BaseAddress = new Uri("https://localhost:8081/");
+            client.BaseAddress = new Uri("http://victorifyapi:8080/");
         });
 
         services.AddHttpClient<StudentService>(client =>
         {
-            client.BaseAddress = new Uri("https://localhost:8081/");
+            client.BaseAddress = new Uri("http://victorifyapi:8080/");
         });
 
         // Rejestracja ReportService
@@ -31,16 +31,23 @@ class Program
         // Zbudowanie ServiceProvider
         var serviceProvider = services.BuildServiceProvider();
 
-        // Pobranie serwisów
-        var lessonService = serviceProvider.GetRequiredService<LessonService>();
-        var teacherService = serviceProvider.GetRequiredService<TeacherService>();
-        var studentService = serviceProvider.GetRequiredService<StudentService>();
+        // Pobranie serwisu ReportService
         var reportService = serviceProvider.GetRequiredService<ReportService>();
 
         // Generowanie raportu w formacie .txt
-        string reportPath = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "Reports");
+        string reportDirectory = "/app/Reports"; ; // Katalog w kontenerze
+        Directory.CreateDirectory(reportDirectory); // Upewnij się, że katalog istnieje
+        string reportPath = Path.Combine(reportDirectory, $"Report_{DateTime.Now:ddMMyyHHmm}.txt");
 
-        await reportService.GenerateTxtReportAsync(reportPath);
-        Console.WriteLine($"Report generated: {reportPath}");
+        Console.WriteLine("Starting report generation...");
+        try
+        {
+            await reportService.GenerateTxtReportAsync(reportPath);
+            Console.WriteLine($"Report generated successfully at: {reportPath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred during report generation: {ex.Message}");
+        }
     }
 }

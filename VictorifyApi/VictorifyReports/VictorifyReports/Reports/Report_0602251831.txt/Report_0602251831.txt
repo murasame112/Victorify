@@ -1,0 +1,38 @@
+Victorify Report - Generated on 02/06/2025 18:31:59
+==================================================
+
+Teachers:
+- ID: 76, Name: string string, Hourly Rate: ¤15.00
+- ID: 77, Name: Adam Mickiewicz, Hourly Rate: ¤45.00
+- ID: 78, Name: Maria Konopnicka, Hourly Rate: ¤50.00
+- ID: 79, Name: Henryk Sienkiewicz, Hourly Rate: ¤60.00
+- ID: 80, Name: Juliusz Słowacki, Hourly Rate: ¤55.00
+- ID: 81, Name: Eliza Orzeszkowa, Hourly Rate: ¤40.00
+- ID: 82, Name: Stanisław Wyspiański, Hourly Rate: ¤65.00
+- ID: 83, Name: Zofia Nałkowska, Hourly Rate: ¤50.00
+- ID: 84, Name: Władysław Reymont, Hourly Rate: ¤70.00
+- ID: 85, Name: Jan Kochanowski, Hourly Rate: ¤35.00
+- ID: 86, Name: Stefan Żeromski, Hourly Rate: ¤45.00
+
+Students:
+- ID: 11, Name: Jan Matejko, Email: jmatejko@example.com
+- ID: 12, Name: Fryderyk Chopin, Email: fchopin@example.com
+- ID: 13, Name: Stanisław Moniuszko, Email: smoniuszko@example.com
+- ID: 14, Name: Witkacy Witkiewicz, Email: wwitkiewicz@example.com
+- ID: 15, Name: Artur Grottger, Email: agrottger@example.com
+- ID: 16, Name: Ignacy Paderewski, Email: ipaderewski@example.com
+- ID: 17, Name: Jacek Malczewski, Email: jmalczewski@example.com
+- ID: 18, Name: Wojciech Kossak, Email: wkossak@example.com
+- ID: 19, Name: Zygmunt Noskowski, Email: znoskowski@example.com
+- ID: 20, Name: Józef Czapski, Email: jczapski@example.com
+
+Lessons:
+- ID: 1, Date: 12/14/2024 15:42:02, Current: True
+  Teacher: string string
+  Student: Jan Matejko
+- ID: 2, Date: 12/14/2024 15:51:46, Current: True
+  Teacher: string string
+  Student: Jan Matejko
+- ID: 3, Date: 01/28/2025 23:04:25, Current: True
+  Teacher: string string
+  Student: Jan Matejko

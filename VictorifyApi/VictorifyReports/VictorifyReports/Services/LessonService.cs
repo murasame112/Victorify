@@ -21,6 +21,7 @@ namespace VictorifyReports.Services
         {
             try
             {
+
                 var response = await _httpClient.GetAsync("api/Lessons");
                 response.EnsureSuccessStatusCode();
 

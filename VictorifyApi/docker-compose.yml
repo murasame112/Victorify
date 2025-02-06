@@ -9,7 +9,9 @@ services:
     ports:
       - "8080:8080"
       - "8081:8081"
-
+    networks:
+      - victorify_network
+      
   victorifydb:
     image: postgres:latest
     container_name: postgres-container
@@ -21,6 +23,8 @@ services:
       - ./.contrainers/postgres-container:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    networks:
+      - victorify_network
  
   victorifyfrontend:
     build:
@@ -28,3 +32,22 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5173:5173"
+    networks:
+      - victorify_network
+      
+  victorifyreports:
+    build:
+      context: ./VictorifyReports/VictorifyReports
+      dockerfile: Dockerfile
+    environment:
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    volumes:
+      - ./VictorifyReports/VictorifyReports/Reports:/app/Reports # Folder na wygenerowane raporty
+    depends_on:
+      - victorifyapi
+    networks:
+      - victorify_network
+      
+networks:
+  victorify_network:
+    driver: bridge
